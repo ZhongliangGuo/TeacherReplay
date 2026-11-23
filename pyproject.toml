@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teacher-replay"
+version = "0.1.0"
+description = "Teacher Replay: effective and verifiable auditing of prompt use in distilled language models"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Zhongliang Guo" },
+  { name = "Yan Lin" },
+  { name = "Daizong Liu" },
+  { name = "Chun Pong Lau" },
+]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "pandas>=2.0", "pyarrow>=14"]
+
+[project.optional-dependencies]
+models = ["torch>=2.4", "transformers>=5.0", "accelerate>=1.0", "trl>=1.0", "datasets>=3.0"]
+vllm = ["vllm"]
+test = ["pytest>=7"]
+
+[project.scripts]
+teacher-replay = "teacher_replay.cli:main"
+
+[tool.setuptools]
+packages = ["teacher_replay"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
